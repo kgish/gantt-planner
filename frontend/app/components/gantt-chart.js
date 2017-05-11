@@ -5,33 +5,78 @@ export default Ember.Component.extend({
     classNames: ['gantt-chart'],
     cid: null,
     tasks: null,
-    scale_units: null,
+    scale_units: [
+        {
+            scale_unit: 'Day',
+            date_scale: '%j %F'
+        },
+        {
+            scale_unit: 'Week',
+            date_scale: 'Week %W'
+        },
+        {
+            scale_unit: 'Quarter',
+            date_scale: '%F %Y'
+        },
+        {
+            scale_unit: 'Month',
+            date_scale: '%F %Y'
+        },
+        {
+            scale_unit: 'Year',
+            date_scale: '%Y'
+        }
+    ],
+
+    current_scale_unit: 'Week',
+
+    filter_status: [
+        'All',
+        'Pending',
+        'Started',
+        'Completed'
+    ],
+
+    current_filter_status: 'All',
 
     didInsertElement() {
         this.set('cid', $('.gantt-chart').attr('id'));
+
+        gantt.config.scale_unit = 'week';
+        gantt.config.date_scale = "Week %W";
+
+        gantt.attachEvent("onBeforeTaskDisplay", (id, task) => {
+            let current_filter_status = this.get('current_filter_status');
+            return (
+                (current_filter_status === 'All') ||
+                (current_filter_status === 'Pending' && task.progress === 0) ||
+                (current_filter_status === 'Started' && task.progress > 0 && task.progress < 1) ||
+                (current_filter_status === 'Completed' && task.progress === 1)
+            );
+        });
     },
 
     didRender() {
         let cid = this.get('cid'),
             sel_gantt_chart = '#'+cid,
             gantt_chart = $(sel_gantt_chart);
-            // gantt_here = $('div').attr('id', 'gantt_here');
 
-        gantt_chart.css({
-            width: '100%',
-            height: '80%'
-        });
+        gantt_chart.append('<div id="gantt_here"></div>');
 
-        gantt_chart.append('<div id="gantt_here" style="width:100%;height:80%"></div>');
-
-        //gantt.init(this.get('cid'));
         gantt.init('gantt_here');
         gantt.parse(this.get('tasks'));
     },
 
     actions: {
         scale(unit) {
-            gantt.config.scale_unit = unit;
+            this.set('current_scale_unit', unit.scale_unit);
+            gantt.config.scale_unit = unit.scale_unit.toLowerCase();
+            gantt.config.date_scale = unit.date_scale;
+            gantt.parse(this.get('tasks'));
+        },
+        filter(status) {
+            this.set('current_filter_status', status);
+            gantt.parse(this.get('tasks'));
         }
     }
 });
