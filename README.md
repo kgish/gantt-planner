@@ -25,26 +25,11 @@ export default Ember.Component.extend({
   cid: null,
   tasks: null,
   scale_units: [
-        {
-            scale_unit: 'Day',
-            date_scale: '%j %F'
-        },
-        {
-            scale_unit: 'Week',
-            date_scale: 'Week %W'
-        },
-        {
-            scale_unit: 'Quarter',
-            date_scale: '%F %Y'
-        },
-        {
-            scale_unit: 'Month',
-            date_scale: '%F %Y'
-        },
-        {
-            scale_unit: 'Year',
-            date_scale: '%Y'
-        }
+        { scale_unit: 'Day', date_scale: '%j %F' },
+        { scale_unit: 'Week', date_scale: 'Week %W' },
+        { scale_unit: 'Quarter', date_scale: '%F %Y' },
+        { scale_unit: 'Month', date_scale: '%F %Y' },
+        { scale_unit: 'Year', date_scale: '%Y' }
     ],
 
   current_scale_unit: 'Week',
