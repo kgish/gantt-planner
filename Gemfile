@@ -14,7 +14,7 @@ gem 'rack-cors'
 
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'ember-cli-rails'
+gem 'ember-cli-rails', '~> 0.8.5'
 gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'rack-attack'

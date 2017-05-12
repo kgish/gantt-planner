@@ -1,9 +1,9 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
-  "description": "Small description for frontend goes here",
+  "version": "0.0.1",
+  "description": "Client-side stuff for the gantt planner application",
   "license": "MIT",
-  "author": "",
+  "author": "Kiffin Gish",
   "directories": {
     "doc": "doc",
     "test": "tests"
