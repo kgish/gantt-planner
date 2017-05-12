@@ -12,12 +12,23 @@ In order for the following to work properly, ensure that you've added the follow
 gem 'ember-cli-rails'
 ```
 
+and run:
+```
+$ bundle install
+```
+
 To configure your EmberCLI-Rails applications for Heroku:
 
 ```
 $ bundle exec rails generate ember:heroku
 $ git add .
 $ git commit -m"Ran rails generate ember:heroku"
+```
+
+Create the heroku application:
+
+```
+$ heroku create gantt-planner
 ```
 
 Add the NodeJS buildpack and configure NPM to include the bower dependency's executable file.
