@@ -270,6 +270,8 @@ $ heroku open
 
 ## References
 
+* [DHTMLX Gantt](https://docs.dhtmlx.com/gantt/)
+* [DHTMLX Grid](https://dhtmlx.com/docs/products/dhtmlxGrid/)
 * [Ember.js](http://emberjs.com/)
 * [Ember-cli](https://ember-cli.com/)
 * [Github ember-cli-rails](https://github.com/thoughtbot/ember-cli-rails)
