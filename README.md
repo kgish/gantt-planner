@@ -212,6 +212,8 @@ and then make it accessible to the application and asset precompilation via:
 
 If you have chosen to install DHTMLXGantt using an alternative method like [bower](https://docs.dhtmlx.com/gantt/desktop__install_with_bower.html), then you need to change `vendor/dhtmlx/gantt/codebase` to `bower_components/gantt/codebase`.
 
+Please note that only the community version is available using `bower` or `npm` so if you have purchased the commercial version you will have to use the `vendor` directory solution.
+
 ### Ember styling
 
 `RAILS_ROOT/frontend/app/styles/main.scss`
