@@ -142,8 +142,7 @@ export default Ember.Route.extend({
           "start_date": "",
           "duration": "",
           "progress": 0.6,
-          "open":
-          true
+          "open": true
         },
         ...
 	  ],
