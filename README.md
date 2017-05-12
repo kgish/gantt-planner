@@ -1,6 +1,8 @@
 # Gantt Planner
 
-An advanced planning tool using gantt charts implemented with the help of the [DHTMLX Gantt Chart Library](https://docs.dhtmlx.com/gantt/).
+An advanced planning tool using gantt charts implemented with the help of the [DHTMLX Gantt Chart Library](https://docs.dhtmlx.com/gantt/), [Ember.js](https://www.emberjs.com/) and [Ruby on Rails](http://rubyonrails.org/).
+
+![Screenshot of the homepage](images/screenshot-homepage.png)
 
 ## References
 
