@@ -4,6 +4,25 @@ An advanced planning tool using gantt charts implemented with the help of the [D
 
 ![Screenshot of the homepage](images/screenshot-homepage.png)
 
+## Introduction
+
+In order to download, build and run this application you will need to do the following:
+
+```shell
+$ git clone git@github.com:kgish/gantt-planner.git
+$ bundle install
+$ cd frontend
+$ npm install && bower install
+$ cd ..
+$ bundle exec rails server
+```
+
+The application will then be available by pointing your browser to:
+
+```
+http://localhost:3000
+```
+
 ## Client-side JavaScript
 
 We will create an [Ember component](https://guides.emberjs.com/v2.13.0/components/defining-a-component/) to insert a Gantt Chart onto a given page and processing a task list like this:
@@ -190,6 +209,8 @@ and then make it accessible to the application and asset precompilation via:
     app.import('vendor/dhtmlx/gantt/codebase/dhtmlxgantt.js');
     app.import('vendor/dhtmlx/gantt/codebase/dhtmlxgantt.css');
 ```
+
+If you have chosen to install DHTMLXGantt using an alternative method like [bower](https://docs.dhtmlx.com/gantt/desktop__install_with_bower.html), then you need to change `vendor/dhtmlx/gantt/codebase` to `bower_components/gantt/codebase`.
 
 ### Ember styling
 
