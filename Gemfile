@@ -19,6 +19,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'rack-attack'
 
+gem 'ember-cli-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -33,3 +35,5 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+gem 'rails_12factor', group: [:staging, :production]

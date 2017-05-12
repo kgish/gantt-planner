@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+set -e
+
+bower="$(pwd)/node_modules/.bin/bower"
+
+for app in "frontend"; do
+  cd $app &&
+    npm install &&
+    $bower install &&
+    cd -
+done

@@ -4,6 +4,44 @@ An advanced planning tool using gantt charts implemented with the help of the [D
 
 ![Screenshot of the homepage](images/screenshot-homepage.png)
 
+## Heroku
+
+In order for the following to work properly, ensure that you've added the following lines (see above) to your `Gemfile`:
+
+```
+gem 'ember-cli-rails'
+```
+
+To configure your EmberCLI-Rails applications for Heroku:
+
+```
+$ bundle exec rails generate ember:heroku
+$ git add .
+$ git commit -m"Ran rails generate ember:heroku"
+```
+
+Add the NodeJS buildpack and configure NPM to include the bower dependency's executable file.
+
+```
+$ heroku buildpacks:clear
+$ heroku buildpacks:add --index 1 heroku/nodejs
+$ heroku buildpacks:add --index 2 heroku/ruby
+$ heroku config:unset SKIP_EMBER
+```
+
+You are ready to deploy:
+
+```
+$ git push heroku master
+```
+
+and fire it up:
+
+```
+$ heroku open
+```
+
+
 ## References
 
 * [Ember.js](http://emberjs.com/)

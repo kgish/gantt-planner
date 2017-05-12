@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "postinstall": "sh bin/heroku_install"
+  },
+  "dependencies": {
+    "bower": "*"
+  },
+  "cacheDirectories": [
+    "frontend/node_modules",
+    "frontend/bower_components",
+    "node_modules"
+  ]
+}
