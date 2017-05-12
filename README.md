@@ -110,13 +110,19 @@ export default Ember.Component.extend({
   <div class="btn-group mr-2" role="group" aria-label="Scale units">
     Scale:
     {{#each scale_units as |unit|}}
-      <button type="button" class="btn btn-{{if (eq current_scale_unit unit.scale_unit) 'primary' 'secondary'}} btn-sm" {{action 'scale' unit}}>{{unit.scale_unit}}</button>
+      <button type="button"
+        class="btn btn-{{if (eq current_scale_unit unit.scale_unit) 'primary' 'secondary'}} btn-sm"
+        {{action 'scale' unit}}>{{unit.scale_unit}}
+      </button>
     {{/each}}
   </div>
   <div class="btn-group mr-2" role="group" aria-label="Filter projects">
     Filter:
     {{#each filter_status as |status|}}
-      <button type="button" class="btn btn-{{if (eq current_filter_status status) 'primary' 'secondary'}} btn-sm" {{action 'filter' status}}>{{status}}</button>
+      <button type="button"
+        class="btn btn-{{if (eq current_filter_status status) 'primary' 'secondary'}} btn-sm"
+        {{action 'filter' status}}>{{status}}
+      </button>
     {{/each}}
   </div>
 </div>
