@@ -10,14 +10,14 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
-gem 'rack-cors'
+#gem 'rack-cors'
 
-gem 'bcrypt', '~> 3.1.7'
+#gem 'bcrypt', '~> 3.1.7'
 
 gem 'ember-cli-rails', '~> 0.8.5'
-gem 'active_model_serializers', '~> 0.10.0'
+#gem 'active_model_serializers', '~> 0.10.0'
 
-gem 'rack-attack'
+#gem 'rack-attack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
