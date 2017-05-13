@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source: 1
+  target: 1
+  type: 
+
+two:
+  source: 1
+  target: 1
+  type: 
