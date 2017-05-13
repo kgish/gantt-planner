@@ -45,7 +45,6 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     awesome_print (1.7.0)
-    bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -97,9 +96,6 @@ GEM
       pry (>= 0.10.4)
     puma (3.8.2)
     rack (2.0.2)
-    rack-attack (5.0.1)
-      rack
-    rack-cors (0.4.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.2)
@@ -156,16 +152,13 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   awesome_print
-  bcrypt (~> 3.1.7)
   better_errors
   byebug
-  ember-cli-rails (~> 0.8.5)
+  ember-cli-rails (~> 0.8.0)
   listen (~> 3.0.5)
   pg (~> 0.18)
   pry-rails
   puma (~> 3.0)
-  rack-attack
-  rack-cors
   rails (~> 5.0.2)
   spring
   spring-watcher-listen (~> 2.0.0)

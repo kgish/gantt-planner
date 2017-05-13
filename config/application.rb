@@ -28,6 +28,6 @@ module EmberRailsTemplate
     config.api_only = true
 
     # Enable rate-limiting and throttling
-    config.middleware.use Rack::Attack
+    # config.middleware.use Rack::Attack
   end
 end

@@ -14,8 +14,8 @@ gem 'puma', '~> 3.0'
 
 #gem 'bcrypt', '~> 3.1.7'
 
-gem 'ember-cli-rails', '~> 0.8.5'
-#gem 'active_model_serializers', '~> 0.10.0'
+gem 'ember-cli-rails', '~> 0.8.0'
+gem 'active_model_serializers', '~> 0.10.0'
 
 #gem 'rack-attack'
 
