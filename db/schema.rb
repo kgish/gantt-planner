@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20170513182657) do
   create_table "links", force: :cascade do |t|
     t.integer "source"
     t.integer "target"
-    t.integer "_type"
+    t.integer "code"
   end
 
   create_table "tasks", force: :cascade do |t|

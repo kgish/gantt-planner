@@ -57,14 +57,16 @@ export default Ember.Component.extend({
     },
 
     didRender() {
-        let cid = this.get('cid'),
-            sel_gantt_chart = '#'+cid,
-            gantt_chart = $(sel_gantt_chart);
+        if ($('#gantt_here').length === 0) {
+            let cid = this.get('cid'),
+                sel_gantt_chart = '#'+cid,
+                gantt_chart = $(sel_gantt_chart);
 
-        gantt_chart.append('<div id="gantt_here"></div>');
+            gantt_chart.append('<div id="gantt_here"></div>');
 
-        gantt.init('gantt_here');
-        gantt.parse(this.get('tasks'));
+            gantt.init('gantt_here');
+            gantt.parse(this.get('tasks'));
+        }
     },
 
     actions: {

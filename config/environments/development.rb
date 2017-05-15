@@ -50,4 +50,6 @@ Rails.application.configure do
     port: 3000
   }
 
+  ActiveModelSerializers.config.adapter = :json_api
+
 end

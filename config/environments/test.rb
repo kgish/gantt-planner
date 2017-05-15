@@ -47,4 +47,7 @@ Rails.application.configure do
       host: 'localhost',
       port: 3000
   }
+
+  ActiveModelSerializers.config.adapter = :json_api
+
 end

@@ -1,0 +1,54 @@
+<h1>Links list</h1>
+
+<p>
+  {{link-to "New Link" "links.new" }}
+</p>
+
+{{#if model.length}}
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Source
+        </th>
+        <th>
+          Target
+        </th>
+        <th>
+          Type
+        </th>
+        <th colspan="3">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |link|}}
+        <tr>
+          <td>
+            {{link.source}}
+          </td>
+          <td>
+            {{link.target}}
+          </td>
+          <td>
+            {{link.code}}
+          </td>
+          <td>
+            {{link-to "Edit" "links.edit" link}}
+          </td>
+          <td>
+            {{link-to "Show" "links.show" link}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" link}}>Remove</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p id="blankslate">
+    No Links found
+  </p>
+{{/if}}

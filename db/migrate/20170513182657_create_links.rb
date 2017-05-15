@@ -3,7 +3,7 @@ class CreateLinks < ActiveRecord::Migration[5.0]
     create_table :links do |t|
       t.integer :source
       t.integer :target
-      t.integer :_type
+      t.integer :code
     end
   end
 end

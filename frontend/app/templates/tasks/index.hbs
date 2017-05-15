@@ -1,0 +1,66 @@
+<h1>Tasks list</h1>
+
+<p>
+  {{link-to "New Task" "tasks.new" }}
+</p>
+
+{{#if model.length}}
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Text
+        </th>
+        <th>
+          Start date
+        </th>
+        <th>
+          Duration
+        </th>
+        <th>
+          Progress
+        </th>
+        <th>
+          Parent
+        </th>
+        <th colspan="3">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |task|}}
+        <tr>
+          <td>
+            {{task.text}}
+          </td>
+          <td>
+            {{format-date task.start_date}}
+          </td>
+          <td>
+            {{task.duration}}
+          </td>
+          <td>
+            {{task.progress}}
+          </td>
+          <td>
+            {{task.parent}}
+          </td>
+          <td>
+            {{link-to "Edit" "tasks.edit" task}}
+          </td>
+          <td>
+            {{link-to "Show" "tasks.show" task}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" task}}>Remove</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p id="blankslate">
+    No Tasks found
+  </p>
+{{/if}}

@@ -19,18 +19,18 @@ end
 
 Link.delete_all
 [
-  { source: 11, target: 12, _type: 1 },
-  { source: 11, target: 13, _type: 1 },
-  { source: 11, target: 14, _type: 1 },
-  { source: 11, target: 15, _type: 1 },
-  { source: 11, target: 16, _type: 1 },
-  { source: 13, target: 17, _type: 1 },
-  { source: 17, target: 18, _type: 0 },
-  { source: 18, target: 19, _type: 0 },
-  { source: 19, target: 20, _type: 0 },
-  { source: 15, target: 21, _type: 2 },
-  { source: 15, target: 22, _type: 2 },
-  { source: 15, target: 23, _type: 2 }
+  { source: 11, target: 12, code: 1 },
+  { source: 11, target: 13, code: 1 },
+  { source: 11, target: 14, code: 1 },
+  { source: 11, target: 15, code: 1 },
+  { source: 11, target: 16, code: 1 },
+  { source: 13, target: 17, code: 1 },
+  { source: 17, target: 18, code: 0 },
+  { source: 18, target: 19, code: 0 },
+  { source: 19, target: 20, code: 0 },
+  { source: 15, target: 21, code: 2 },
+  { source: 15, target: 22, code: 2 },
+  { source: 15, target: 23, code: 2 }
 ].each do |link|
   Link.create!(link)
 end
