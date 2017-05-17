@@ -1,4 +1,10 @@
 <form {{action "save" on="submit"}}>
+    <div>
+        <label>
+            Task Id
+            {{input type="text" value=model.task_id}}
+        </label>
+    </div>
   <div>
     <label>
       Text
@@ -25,10 +31,16 @@
   </div>
   <div>
     <label>
-      Parent
-      {{input type="text" value=model.parent}}
+      Parent Id
+      {{input type="text" value=model.parent_id}}
     </label>
   </div>
+    <div>
+        <label>
+            Project Id
+            {{input type="text" value=model.project_id}}
+        </label>
+    </div>
   <div>
     <input type="submit" value="Save">
   </div>

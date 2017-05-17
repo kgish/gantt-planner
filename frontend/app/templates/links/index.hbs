@@ -9,10 +9,13 @@
     <thead>
       <tr>
         <th>
-          Source
+          Link Id
         </th>
         <th>
-          Target
+          Source Id
+        </th>
+        <th>
+          Target Id
         </th>
         <th>
           Type
@@ -26,10 +29,13 @@
       {{#each model as |link|}}
         <tr>
           <td>
-            {{link.source}}
+            {{link.link_id}}
           </td>
           <td>
-            {{link.target}}
+            {{link.source_id}}
+          </td>
+          <td>
+            {{link.target_id}}
           </td>
           <td>
             {{link.code}}

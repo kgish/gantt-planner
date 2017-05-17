@@ -8,6 +8,9 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+          <th>
+           Task Id
+          </th>
         <th>
           Text
         </th>
@@ -21,8 +24,11 @@
           Progress
         </th>
         <th>
-          Parent
+          Parent Id
         </th>
+          <th>
+              Project Id
+          </th>
         <th colspan="3">
           Actions
         </th>
@@ -31,6 +37,9 @@
     <tbody>
       {{#each model as |task|}}
         <tr>
+            <td>
+                {{task.task_id}}
+            </td>
           <td>
             {{task.text}}
           </td>
@@ -44,8 +53,11 @@
             {{task.progress}}
           </td>
           <td>
-            {{task.parent}}
+            {{task.parent_id}}
           </td>
+            <td>
+                {{task.project_id}}
+            </td>
           <td>
             {{link-to "Edit" "tasks.edit" task}}
           </td>
