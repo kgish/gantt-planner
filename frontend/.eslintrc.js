@@ -11,6 +11,9 @@ module.exports = {
   rules: {
   },
   globals: {
-      moment: true
+      moment: true,
+      $: true,
+      server: true,
+      bootbox: true
   }
 };

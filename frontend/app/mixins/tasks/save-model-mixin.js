@@ -7,7 +7,7 @@ export default Ember.Mixin.create({
       this.currentModel.save().then(function() {
         route.transitionTo('tasks');
       }, function() {
-        console.log('Failed to save the model');
+        bootbox.alert('Failed to save task');
       });
     },
 

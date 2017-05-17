@@ -7,7 +7,7 @@ export default Ember.Mixin.create({
       this.currentModel.save().then(function() {
         route.transitionTo('links');
       }, function() {
-        console.log('Failed to save the model');
+        bootbox.alert('Failed to save link');
       });
     },
 
