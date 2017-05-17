@@ -1,0 +1,54 @@
+<p>
+  {{link-to "Projects list" "projects.index" }}
+</p>
+
+<h1>Projects show</h1>
+
+<p>
+  <strong>Text:</strong>
+  <span>{{model.text}}</span>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <span>{{format-date model.start_date}}</span>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <span>{{model.duration}}</span>
+</p>
+
+<p>
+  <strong>Progress:</strong>
+  <span>{{model.progress}}</span>
+</p>
+
+<h2>Tasks</h2>
+
+{{#if tasks.length}}
+    <table class="table table-bordered">
+        <tbody>
+        {{#each tasks as |task|}}
+            <tr>
+                <td>
+                    {{task.text}}
+                </td>
+                <td>
+                    {{format-date task.start_date}}
+                </td>
+                <td>
+                    {{task.duration}}
+                </td>
+                <td>
+                    {{task.progress}}
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p id="blankslate">
+        No Tasks found
+    </p>
+{{/if}}

@@ -1,0 +1,29 @@
+<form {{action "save" on="submit"}}>
+  <div>
+    <label>
+      Text
+      {{input type="text" value=model.text}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Start date
+      {{input type="text" value=model.start_date}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Duration
+      {{input type="text" value=model.duration}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Progress
+      {{input type="text" value=model.progress}}
+    </label>
+  </div>
+  <div>
+    <input type="submit" value="Save">
+  </div>
+</form>

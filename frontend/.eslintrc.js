@@ -14,6 +14,7 @@ module.exports = {
       moment: true,
       $: true,
       server: true,
-      bootbox: true
+      bootbox: true,
+      RSVP: true
   }
 };

@@ -4,7 +4,11 @@ module Api::V1
 
     # GET /tasks
     def index
-      @tasks = Task.all
+      if params[:filter] and params[:filter][:parent]
+          @tasks = Task.where(parent: params[:filter][:parent])
+      else
+        @tasks = Task.all
+      end
 
       render json: @tasks
     end
@@ -47,7 +51,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def task_params
-        params.require(:task).permit(:text, :start_date, :duration, :progress, :sortorder, :parent)
+        params.require(:task).permit(:task_id, :text, :start_date, :duration, :progress, :sortorder, :parent_id, :project_id)
       end
   end
 end

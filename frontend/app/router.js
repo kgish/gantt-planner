@@ -7,28 +7,43 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+
   this.route('tasks', function() {
-    this.route('new');
+      this.route('new');
 
-    this.route('edit', {
-      path: ':task_id/edit'
-    });
+      this.route('edit', {
+          path: ':task_id/edit'
+      });
 
-    this.route('show', {
-      path: ':task_id'
-    });
+      this.route('show', {
+          path: ':task_id'
+      });
   });
+
   this.route('links', function() {
+      this.route('new');
+
+      this.route('edit', {
+          path: ':link_id/edit'
+      });
+
+      this.route('show', {
+          path: ':link_id'
+      });
+  });
+
+  this.route('projects', function() {
     this.route('new');
 
     this.route('edit', {
-      path: ':link_id/edit'
+      path: ':project_id/edit'
     });
 
     this.route('show', {
-      path: ':link_id'
+      path: ':project_id'
     });
   });
+
 });
 
 export default Router;
