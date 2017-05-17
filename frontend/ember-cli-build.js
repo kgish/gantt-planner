@@ -11,9 +11,6 @@ module.exports = function(defaults) {
     app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
     app.import('bower_components/moment/min/moment.min.js');
 
-    // app.import('vendor/dhtmlx/gantt/dhtmlxgantt.js');
-    // app.import('vendor/dhtmlx/gantt/dhtmlxgantt.css');
-
     app.import('vendor/dhtmlx/gantt/codebase/dhtmlxgantt.js');
     app.import('vendor/dhtmlx/gantt/codebase/dhtmlxgantt.css');
 
@@ -23,6 +20,8 @@ module.exports = function(defaults) {
 
     // app.import('vendor/dhtmlx/grid/dhtmlxgrid.js');
     // app.import('vendor/dhtmlx/grid/dhtmlxgrid.css');
+
+    app.import('vendor/bootbox/bootbox.min.js');
 
     return app.toTree();
 };
