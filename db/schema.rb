@@ -16,33 +16,23 @@ ActiveRecord::Schema.define(version: 20170513182657) do
   enable_extension "plpgsql"
 
   create_table "links", force: :cascade do |t|
-    t.integer "link_id"
     t.integer "source_id"
     t.integer "target_id"
     t.integer "code"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_links_on_project_id", using: :btree
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.integer "project_id"
-    t.string  "text"
-    t.date    "start_date"
-    t.integer "duration"
-    t.float   "progress"
-    t.integer "sortorder"
+    t.index ["source_id"], name: "index_links_on_source_id", using: :btree
+    t.index ["target_id"], name: "index_links_on_target_id", using: :btree
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer "task_id"
     t.string  "text"
     t.date    "start_date"
     t.integer "duration"
     t.float   "progress"
     t.integer "sortorder"
     t.integer "parent_id"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_tasks_on_project_id", using: :btree
+    t.integer "topmost_id"
+    t.index ["parent_id"], name: "index_tasks_on_parent_id", using: :btree
+    t.index ["topmost_id"], name: "index_tasks_on_topmost_id", using: :btree
   end
 
 end

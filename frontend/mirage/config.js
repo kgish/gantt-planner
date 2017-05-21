@@ -24,5 +24,5 @@ export default function() {
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
 
-  this.passthrough( '/api/v1/projects', '/api/v1/tasks', '/api/v1/links' );
+  this.passthrough('/api/v1/projects', '/api/v1/tasks', '/api/v1/links' );
 }

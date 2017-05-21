@@ -1,14 +1,13 @@
 class CreateTasks < ActiveRecord::Migration[5.0]
   def change
     create_table :tasks do |t|
-      t.integer :task_id
       t.string :text
       t.date :start_date
       t.integer :duration
       t.float :progress
       t.integer :sortorder
-      t.integer :parent_id
-      t.belongs_to :project
+      t.belongs_to :parent, class_name: 'Task'
+      t.belongs_to :topmost, class_name: 'Task'
     end
   end
 end

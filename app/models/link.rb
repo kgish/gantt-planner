@@ -1,6 +1,7 @@
 class Link < ApplicationRecord
-  validates :link_id, :source_id, :target_id, :code, presence: true
+  validates :source, :target, presence: true
   validates_inclusion_of :code, :in => [ 0, 1, 2, 3 ]
 
-  belongs_to :project
+  belongs_to :source, class_name: 'Task'
+  belongs_to :target, class_name: 'Task'
 end

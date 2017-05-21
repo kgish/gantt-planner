@@ -1,5 +1,9 @@
 class Task < ApplicationRecord
-  validates :task_id, :text, :start_date, :duration, :progress, :parent_id, presence: :true
+  validates :text, :start_date, :duration, :progress, :parent, :topmost, presence: :true
 
-  belongs_to :project
+  belongs_to :parent, class_name: 'Task'
+  belongs_to :topmost, class_name: 'Task'
+
+  has_many :subtasks, class_name: 'Task'
+  has_many :links
 end
