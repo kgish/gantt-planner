@@ -8,7 +8,7 @@ class CreateTasks < ActiveRecord::Migration[5.0]
       t.float :progress
       t.integer :sortorder
       t.integer :parent_id
-      t.integer :project_id
+      t.belongs_to :project
     end
   end
 end

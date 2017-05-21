@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 20170513182657) do
     t.integer "source_id"
     t.integer "target_id"
     t.integer "code"
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_links_on_project_id", using: :btree
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.integer "project_id"
+    t.string  "text"
+    t.date    "start_date"
+    t.integer "duration"
+    t.float   "progress"
+    t.integer "sortorder"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -31,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170513182657) do
     t.integer "sortorder"
     t.integer "parent_id"
     t.integer "project_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id", using: :btree
   end
 
 end

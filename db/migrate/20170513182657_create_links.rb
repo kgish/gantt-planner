@@ -5,6 +5,7 @@ class CreateLinks < ActiveRecord::Migration[5.0]
       t.integer :source_id
       t.integer :target_id
       t.integer :code
+      t.belongs_to :project
     end
   end
 end
