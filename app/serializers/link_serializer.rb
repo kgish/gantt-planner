@@ -1,6 +1,4 @@
 class LinkSerializer < ActiveModel::Serializer
-  attributes :id, :code
+  attributes :id, :source_id, :target_id, :code, :project_id
 
-  belongs_to :source, class_name: 'Task'
-  belongs_to :target, class_name: 'Task'
 end

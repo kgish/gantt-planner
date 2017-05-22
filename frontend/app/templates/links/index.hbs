@@ -9,9 +9,6 @@
     <thead>
       <tr>
         <th>
-          Link Id
-        </th>
-        <th>
           Source Id
         </th>
         <th>
@@ -19,6 +16,9 @@
         </th>
         <th>
           Type
+        </th>
+        <th>
+          Project Id
         </th>
         <th colspan="3">
           Actions
@@ -29,16 +29,16 @@
       {{#each model as |link|}}
         <tr>
           <td>
-            {{link.link_id}}
-          </td>
-          <td>
             {{link.source_id}}
           </td>
           <td>
             {{link.target_id}}
           </td>
           <td>
-            {{link.code}}
+            {{format-link-code link.code}}
+          </td>
+          <td>
+            {{link.project_id}}
           </td>
           <td>
             {{link-to "Edit" "links.edit" link}}

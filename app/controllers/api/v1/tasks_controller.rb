@@ -47,7 +47,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def task_params
-        params.require(:task).permit(:text, :start_date, :duration, :progress, :sortorder, :parent, :topmost)
+        params.require(:task).permit(:text, :start_date, :duration, :progress, :sortorder, :parent_id, :project_id)
       end
   end
 end

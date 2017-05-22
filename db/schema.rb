@@ -19,8 +19,7 @@ ActiveRecord::Schema.define(version: 20170513182657) do
     t.integer "source_id"
     t.integer "target_id"
     t.integer "code"
-    t.index ["source_id"], name: "index_links_on_source_id", using: :btree
-    t.index ["target_id"], name: "index_links_on_target_id", using: :btree
+    t.integer "project_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -30,9 +29,7 @@ ActiveRecord::Schema.define(version: 20170513182657) do
     t.float   "progress"
     t.integer "sortorder"
     t.integer "parent_id"
-    t.integer "topmost_id"
-    t.index ["parent_id"], name: "index_tasks_on_parent_id", using: :btree
-    t.index ["topmost_id"], name: "index_tasks_on_topmost_id", using: :btree
+    t.integer "project_id"
   end
 
 end

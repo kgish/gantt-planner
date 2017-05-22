@@ -47,7 +47,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def link_params
-        params.require(:link).permit(:source, :target, :code)
+        params.require(:link).permit(:source_id, :target_id, :code, :project_id)
       end
   end
 end

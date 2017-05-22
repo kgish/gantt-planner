@@ -5,11 +5,6 @@
 <h1>Link show</h1>
 
 <p>
-    <strong>Link Id:</strong>
-    <span>{{model.link_id}}</span>
-</p>
-
-<p>
   <strong>Source Id:</strong>
   <span>{{model.source_id}}</span>
 </p>
@@ -21,6 +16,11 @@
 
 <p>
   <strong>Type:</strong>
-  <span>{{model.code}}</span>
+  <span>{{format-link-code model.code}}</span>
+</p>
+
+<p>
+    <strong>Project Id:</strong>
+    <span>{{model.project_id}}</span>
 </p>
 

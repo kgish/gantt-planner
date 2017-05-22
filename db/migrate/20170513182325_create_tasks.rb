@@ -6,8 +6,8 @@ class CreateTasks < ActiveRecord::Migration[5.0]
       t.integer :duration
       t.float :progress
       t.integer :sortorder
-      t.belongs_to :parent, class_name: 'Task'
-      t.belongs_to :topmost, class_name: 'Task'
+      t.integer :parent_id
+      t.integer :project_id
     end
   end
 end

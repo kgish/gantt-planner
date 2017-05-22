@@ -1,10 +1,4 @@
 <form {{action "save" on="submit"}}>
-    <div>
-        <label>
-            Link Id
-            {{input type="text" value=model.link_id}}
-        </label>
-    </div>
   <div>
     <label>
       Source Id
@@ -21,6 +15,12 @@
     <label>
       Type
       {{input type="text" value=model.code}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Project Id
+      {{input type="text" value=model.project_id}}
     </label>
   </div>
   <div>
