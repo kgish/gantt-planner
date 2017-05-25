@@ -14,6 +14,7 @@ export default Ember.Route.extend({
         }
     },
     model: function() {
-        return this.store.findAll('task');
+        //  Tasks are those tasks which have a parent.
+        return this.store.query('task', { not: { parent: 0 } } );
     }
 });

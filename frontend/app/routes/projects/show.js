@@ -7,9 +7,16 @@ export default Ember.Route.extend({
 
     setupController(controller, model){
         this._super(controller, model);
-        this.get('store').query('task', {filter: {parent: model.get('id')}}).then(
+
+        this.get('store').query('task', { project: model.get('id') }).then(
             function(tasks) {
                 controller.set('tasks', tasks);
+            }
+        );
+
+        this.get('store').query('link', { project: model.get('id') }).then(
+            function(links) {
+                controller.set('links', links);
             }
         );
     }

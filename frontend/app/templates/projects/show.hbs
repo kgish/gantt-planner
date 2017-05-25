@@ -26,29 +26,8 @@
 
 <h2>Tasks</h2>
 
-{{#if tasks.length}}
-    <table class="table table-bordered">
-        <tbody>
-        {{#each tasks as |task|}}
-            <tr>
-                <td>
-                    {{task.text}}
-                </td>
-                <td>
-                    {{format-date task.start_date}}
-                </td>
-                <td>
-                    {{task.duration}}
-                </td>
-                <td>
-                    {{task.progress}}
-                </td>
-            </tr>
-        {{/each}}
-        </tbody>
-    </table>
-{{else}}
-    <p id="blankslate">
-        No Tasks found
-    </p>
-{{/if}}
+{{table-tasks tasks=tasks project=true}}
+
+<h2>Links</h2>
+
+{{table-links links=links project=true}}

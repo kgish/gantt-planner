@@ -1,10 +1,10 @@
 class CreateLinks < ActiveRecord::Migration[5.0]
   def change
     create_table :links do |t|
-      t.integer :source_id
-      t.integer :target_id
+      t.integer :source
+      t.integer :target
       t.integer :code
-      t.integer :project_id
+      t.integer :project
     end
   end
 end

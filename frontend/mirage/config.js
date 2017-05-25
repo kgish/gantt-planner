@@ -25,4 +25,5 @@ export default function() {
   */
 
   this.passthrough('/api/v1/projects', '/api/v1/tasks', '/api/v1/links' );
+  this.passthrough('/api/v1/projects/:project_id', '/api/v1/tasks/:task_id', '/api/v1/links/:link_id' );
 }

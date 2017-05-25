@@ -13,7 +13,8 @@ export default Ember.Route.extend({
         });
     }
   },
-  model: function() {
-    return this.store.query('task', { filter: { parent: 0}});
+  model() {
+    //  Projects are those tasks which have no parent.
+    return this.store.query('task', { parent: 0 });
   }
 });

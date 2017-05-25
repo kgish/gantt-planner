@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20170513182657) do
   enable_extension "plpgsql"
 
   create_table "links", force: :cascade do |t|
-    t.integer "source_id"
-    t.integer "target_id"
+    t.integer "source"
+    t.integer "target"
     t.integer "code"
-    t.integer "project_id"
+    t.integer "project"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20170513182657) do
     t.integer "duration"
     t.float   "progress"
     t.integer "sortorder"
-    t.integer "parent_id"
-    t.integer "project_id"
+    t.integer "parent"
+    t.integer "project"
   end
 
 end

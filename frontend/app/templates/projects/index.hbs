@@ -4,10 +4,13 @@
   {{link-to "New Projects" "projects.new" }}
 </p>
 
-{{#if projects.length}}
+{{#if model.length}}
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th>
+          Id
+        </th>
         <th>
           Text
         </th>
@@ -26,8 +29,11 @@
       </tr>
     </thead>
     <tbody>
-      {{#each projects as |project|}}
+      {{#each model as |project|}}
         <tr>
+          <td>
+            {{project.id}}
+          </td>
           <td>
             {{project.text}}
           </td>

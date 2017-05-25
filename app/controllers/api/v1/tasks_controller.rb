@@ -1,10 +1,11 @@
 module Api::V1
   class TasksController < ApiController
     before_action :set_task, only: [:show, :update, :destroy]
+    include ActiveHashRelation
 
     # GET /tasks
     def index
-      @tasks = Task.all
+      @tasks = apply_filters(Task.all, params)
 
       render json: @tasks
     end
@@ -47,7 +48,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def task_params
-        params.require(:task).permit(:text, :start_date, :duration, :progress, :sortorder, :parent_id, :project_id)
+        params.require(:task).permit(:text, :start_date, :duration, :progress, :sortorder, :parent, :project)
       end
   end
 end

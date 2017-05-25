@@ -16,6 +16,7 @@ gem 'rack-cors'
 
 gem 'ember-cli-rails', '~> 0.8.0'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'active_hash_relation'
 
 #gem 'rack-attack'
 

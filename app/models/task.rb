@@ -1,4 +1,3 @@
 class Task < ApplicationRecord
-  validates :text, :start_date, :duration, :progress, :parent_id, :project_id, presence: true
-
+  validates :text, :start_date, :duration, :progress, :parent, :project, presence: true
 end
