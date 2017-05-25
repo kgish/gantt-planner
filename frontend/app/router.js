@@ -36,11 +36,11 @@ Router.map(function() {
     this.route('new');
 
     this.route('edit', {
-      path: ':task_id/edit'
+      path: ':project_id/edit'
     });
 
     this.route('show', {
-      path: ':task_id'
+      path: ':project_id'
     });
   });
 
