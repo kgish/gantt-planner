@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     },
 
     setupController(controller, model){
-        this._super(controller, model);
+        let result = this._super(controller, model);
 
         this.get('store').query('task', { project: model.get('id') }).then(
             function(tasks) {
@@ -19,5 +19,7 @@ export default Ember.Route.extend({
                 controller.set('links', links);
             }
         );
+
+        return result;
     }
 });

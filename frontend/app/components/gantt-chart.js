@@ -28,7 +28,7 @@ export default Ember.Component.extend({
         }
     ],
 
-    current_scale_unit: 'Week',
+    current_scale_unit: 'Day',
 
     filter_status: [
         'All',
@@ -42,8 +42,8 @@ export default Ember.Component.extend({
     didInsertElement() {
         this.set('cid', $('.gantt-chart').attr('id'));
 
-        gantt.config.scale_unit = 'week';
-        gantt.config.date_scale = "Week %W";
+        gantt.config.scale_unit = 'day';
+        gantt.config.date_scale = '%j %F';
 
         gantt.attachEvent("onBeforeTaskDisplay", (id, task) => {
             let current_filter_status = this.get('current_filter_status');
@@ -80,6 +80,9 @@ export default Ember.Component.extend({
         filter(status) {
             this.set('current_filter_status', status);
             gantt.parse(this.get('tasks'));
+        },
+        save() {
+
         }
     }
 });

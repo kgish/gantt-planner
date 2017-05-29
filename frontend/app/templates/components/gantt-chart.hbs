@@ -11,6 +11,9 @@
             <button type="button" class="btn btn-{{if (eq current_filter_status status) 'primary' 'secondary'}} btn-sm" {{action 'filter' status}}>{{status}}</button>
         {{/each}}
     </div>
+    <div class="btn-group mr-2" role="group" aria-label="Save changes">
+        <button type="button" class="btn btn-success btn-sm" {{action 'save'}}>Save changes</button>
+    </div>
 </div>
 
 {{yield}}

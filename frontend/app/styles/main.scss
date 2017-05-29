@@ -8,6 +8,15 @@ body {
   padding-top: 5rem;
 }
 
+.main-wrapper {
+  background: #fff;
+  padding: 3rem 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  h1, h2, p, footer {
+    text-align: center;
+  }
+}
+
 #gantt_here {
   width: 100%;
   height: 500px;
