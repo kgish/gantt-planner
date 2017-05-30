@@ -18,13 +18,14 @@ export default Ember.Route.extend(SaveModelMixin, {
             gantt_tasks = { data: [], links: [] };
         if (project) {
             gantt_tasks.data.push({
-                id:         project.get('id').toString(),
-                text:       project.get('text'),
+                id: project.get('id'),
+                text: project.get('text'),
                 start_date: moment(project.get('start_date')).format('DD-MM-YYYY'),
-                duration:   project.get('duration').toString(),
-                parent:     0,
-                progress:   project.get('progress'),
-                open:       true
+                duration: project.get('duration'),
+                parent: '0',
+                progress: project.get('progress'),
+                open: true
+
             });
             if (tasks && tasks.length) {
                 tasks.forEach(task => {

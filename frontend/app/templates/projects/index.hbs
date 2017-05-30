@@ -47,10 +47,10 @@
             {{project.progress}}
           </td>
           <td>
-            {{link-to "Edit" "projects.edit" project}}
+            {{link-to "Edit" "projects.edit" project.id}}
           </td>
           <td>
-            {{link-to "Show" "projects.show" project}}
+            {{link-to "Show" "projects.show" project.id}}
           </td>
           <td>
             <a href="#" {{action "remove" project}}>Remove</a>

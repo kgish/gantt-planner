@@ -2,26 +2,12 @@
   {{link-to "Task list" "tasks.index" }}
 </p>
 
-<h1>Task show</h1>
+<h1>{{model.text}}</h1>
 
 <p>
-  <strong>Text:</strong>
-  <span>{{model.text}}</span>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <span>{{format-date model.start_date}}</span>
-</p>
-
-<p>
-  <strong>Duration:</strong>
-  <span>{{model.duration}}</span>
-</p>
-
-<p>
-  <strong>Progress:</strong>
-  <span>{{model.progress}}</span>
+    <span>{{format-date model.start_date}}</span> |
+    <span>{{model.duration}} days</span> |
+    <span>{{model.progress}}%</span>
 </p>
 
 <p>
