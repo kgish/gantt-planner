@@ -22,7 +22,7 @@ export default Ember.Route.extend(SaveModelMixin, {
                 text: project.get('text'),
                 start_date: moment(project.get('start_date')).format('DD-MM-YYYY'),
                 duration: project.get('duration'),
-                parent: '0',
+                parent: 0,
                 progress: project.get('progress'),
                 open: true
 
@@ -30,11 +30,11 @@ export default Ember.Route.extend(SaveModelMixin, {
             if (tasks && tasks.length) {
                 tasks.forEach(task => {
                     gantt_tasks.data.push({
-                        id:         task.get('id').toString(),
+                        id:         task.get('id'),
                         text:       task.get('text'),
                         start_date: moment(task.get('start_date')).format('DD-MM-YYYY'),
-                        duration:   task.get('duration').toString(),
-                        parent:     task.get('parent').toString(),
+                        duration:   task.get('duration'),
+                        parent:     task.get('parent'),
                         progress:   task.get('progress'),
                         open:       true
                     });
@@ -44,10 +44,10 @@ export default Ember.Route.extend(SaveModelMixin, {
             if (links && links.length) {
                 links.forEach(link => {
                     gantt_tasks.links.push({
-                        id:      link.get('id').toString(),
-                        source:  link.get('source').toString(),
-                        target:  link.get('target').toString(),
-                        type:    link.get('code').toString()
+                        id:      link.get('id'),
+                        source:  link.get('source'),
+                        target:  link.get('target'),
+                        type:    link.get('code')
                     });
                 });
             }
