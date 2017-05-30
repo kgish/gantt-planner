@@ -18,23 +18,23 @@ export default Ember.Route.extend(SaveModelMixin, {
             gantt_tasks = { data: [], links: [] };
         if (project) {
             gantt_tasks.data.push({
-                id: project.get('id'),
-                text: project.get('text'),
+                id:         project.get('id').toString(),
+                text:       project.get('text'),
                 start_date: moment(project.get('start_date')).format('DD-MM-YYYY'),
-                duration: project.get('duration'),
-                parent: 0,
-                progress: project.get('progress'),
-                open: true
+                duration:   project.get('duration'),
+                parent:     '0',
+                progress:   project.get('progress'),
+                open:       true
 
             });
             if (tasks && tasks.length) {
                 tasks.forEach(task => {
                     gantt_tasks.data.push({
-                        id:         task.get('id'),
+                        id:         task.get('id').toString(),
                         text:       task.get('text'),
                         start_date: moment(task.get('start_date')).format('DD-MM-YYYY'),
                         duration:   task.get('duration'),
-                        parent:     task.get('parent'),
+                        parent:     task.get('parent').toString(),
                         progress:   task.get('progress'),
                         open:       true
                     });
@@ -44,9 +44,9 @@ export default Ember.Route.extend(SaveModelMixin, {
             if (links && links.length) {
                 links.forEach(link => {
                     gantt_tasks.links.push({
-                        id:      link.get('id'),
-                        source:  link.get('source'),
-                        target:  link.get('target'),
+                        id:      link.get('id').toString(),
+                        source:  link.get('source').toString(),
+                        target:  link.get('target').toString(),
                         type:    link.get('code')
                     });
                 });
