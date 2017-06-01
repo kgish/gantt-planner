@@ -16,6 +16,7 @@ $ bundle install
 $ cd frontend
 $ npm install && bower install
 $ cd ..
+$ rails db:seed
 $ bundle exec rails server
 ```
 
@@ -285,6 +286,8 @@ You are ready to deploy:
 
 ```
 $ git push heroku master
+$ heroku run rails db:migrate
+$ heroku run rails db:seed
 ```
 
 and fire it up:
