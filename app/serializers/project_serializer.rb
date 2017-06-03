@@ -1,5 +1,3 @@
-class TaskSerializer < ActiveModel::Serializer
+class ProjectSerializer < ActiveModel::Serializer
   attributes :id, :text, :start_date, :duration, :progress
-
-  type 'project'
 end
