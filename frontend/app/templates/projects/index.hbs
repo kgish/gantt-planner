@@ -41,10 +41,10 @@
             {{format-date project.start_date}}
           </td>
           <td>
-            {{project.duration}}
+            {{format-duration project.duration}}
           </td>
           <td>
-            {{project.progress}}
+            {{format-progress project.progress}}
           </td>
           <td>
             {{link-to "Edit" "projects.edit" project.id}}
