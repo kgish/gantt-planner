@@ -1,4 +1,4 @@
-/*eslint no-console: ["error", { allow: ["log", "warn", "error"] }] */
+/*eslint no-console: ["error", { allow: ["error"] }] */
 import Ember from 'ember';
 import SaveModelMixin from 'frontend/mixins/projects/save-model-mixin';
 
@@ -27,7 +27,7 @@ export default Ember.Route.extend(SaveModelMixin, {
                 progress:   project.get('progress'),
                 open:       true
             };
-            console.log('project='+JSON.stringify(project_entry));
+            //console.log('project='+JSON.stringify(project_entry));
             gantt_tasks.data.push(project_entry);
             if (tasks && tasks.length) {
                 tasks.forEach(task => {
@@ -41,7 +41,7 @@ export default Ember.Route.extend(SaveModelMixin, {
                         open:       true
 
                     };
-                    console.log('task='+JSON.stringify(task_entry));
+                    //console.log('task='+JSON.stringify(task_entry));
                     gantt_tasks.data.push(task_entry);
                 });
             }
@@ -54,7 +54,7 @@ export default Ember.Route.extend(SaveModelMixin, {
                         target:  link.get('target'),
                         type:    link.get('code')
                     };
-                    console.log('link='+JSON.stringify(link_entry));
+                    //console.log('link='+JSON.stringify(link_entry));
                     gantt_tasks.links.push(link_entry);
                 });
             }
