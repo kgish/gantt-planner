@@ -42,6 +42,12 @@ export default Ember.Component.extend({
             gantt.parse(tasks);
 
             ganttSetupMarkers(gantt);
+
+            // Bug: force render to display markers.
+            setTimeout(function(){
+                $('button:contains(Week)').click();
+                $('button:contains(Day)').click();
+            }, 500);
         }
     },
 
