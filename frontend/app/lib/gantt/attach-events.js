@@ -89,7 +89,7 @@ export default function ganttAttachEvents (context) {
         "TaskUnselected", // function(...)
         "TemplatesReady" // function(...)
     ].forEach(function(name){
-        gantt.attachEvent("on"+name, function() { console.log('Gantt event: on' + name) });
+        gantt.attachEvent("on"+name, function() { console.log('Gantt event: on' + name); return true; });
     });
 
     gantt.attachEvent("onBeforeTaskDisplay", (id, task) => {
