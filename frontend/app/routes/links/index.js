@@ -1,8 +1,20 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+    model() {
+        return this.store.findAll('link');
+    },
+
+    afterModel(model) {
+        model.forEach(link => {
+           this.store.findRecord('project', link.get('project')).then(
+               project => { console.log(project.get('text')); }
+           );
+        });
+    },
+
     actions: {
-        remove: function(model) {
+        remove(model) {
             bootbox.confirm({
                 message: 'Are you sure you want to delete this link?',
                 callback: function(result) {
@@ -12,8 +24,5 @@ export default Ember.Route.extend({
                 }
             });
         }
-    },
-    model: function() {
-        return this.store.findAll('link');
     }
 });

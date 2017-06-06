@@ -33,20 +33,18 @@
                 <td>
                     {{format-link-code link.code}}
                 </td>
-                {{#unless project}}
-                    <td>
-                        {{link.project}}
-                    </td>
-                    <td>
-                        {{link-to "Edit" "links.edit" link}}
-                    </td>
-                    <td>
-                        {{link-to "Show" "links.show" link}}
-                    </td>
-                    <td>
-                        <a href="#" {{action "remove" link}}>Remove</a>
-                    </td>
-                {{/unless}}
+                <td>
+                    {{link.project}}
+                </td>
+                <td>
+                    {{link-to "Edit" "links.edit" link}}
+                </td>
+                <td>
+                    {{link-to "Show" "links.show" link}}
+                </td>
+                <td>
+                    <a href="#" {{action "remove" link}}>Remove</a>
+                </td>
             </tr>
         {{/each}}
         </tbody>

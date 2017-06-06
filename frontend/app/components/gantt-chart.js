@@ -1,5 +1,7 @@
-/* global gantt :true */
 import Ember from 'ember';
+
+import ganttAttachEvents from '../lib/gantt/attach-events';
+import ganttConfig from '../lib/gantt/config';
 
 export default Ember.Component.extend({
     classNames: ['gantt-chart'],
@@ -41,19 +43,7 @@ export default Ember.Component.extend({
 
     didInsertElement() {
         this.set('cid', $('.gantt-chart').attr('id'));
-
-        gantt.config.scale_unit = 'day';
-        gantt.config.date_scale = '%j %F';
-
-        gantt.attachEvent("onBeforeTaskDisplay", (id, task) => {
-            let current_filter_status = this.get('current_filter_status');
-            return (
-                (current_filter_status === 'All') ||
-                (current_filter_status === 'Pending' && task.progress === 0) ||
-                (current_filter_status === 'Started' && task.progress > 0 && task.progress < 1) ||
-                (current_filter_status === 'Completed' && task.progress === 1)
-            );
-        });
+        ganttConfig();
     },
 
     didRender() {
@@ -67,6 +57,8 @@ export default Ember.Component.extend({
 
             gantt.init('gantt_here');
             gantt.parse(tasks);
+
+            ganttAttachEvents(this);
         }
     },
 

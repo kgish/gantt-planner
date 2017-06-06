@@ -11,6 +11,7 @@ module.exports = {
   rules: {
   },
   globals: {
+      gantt: true,
       moment: true,
       $: true,
       server: true,
