@@ -14,12 +14,9 @@ module.exports = function(defaults) {
     app.import('vendor/dhtmlx/gantt/codebase/dhtmlxgantt.js');
     app.import('vendor/dhtmlx/gantt/codebase/dhtmlxgantt.css');
 
-    // app.import('vendor/dhtmlx/gantt/ext/dhtmlxgantt_marker.js');
-    // app.import('vendor/dhtmlx/gantt/ext/dhtmlxgantt_tooltip.js');
-    // app.import('vendor/dhtmlx/gantt/ext/dhtmlxgantt_smart_rendering.js');
-
-    // app.import('vendor/dhtmlx/grid/dhtmlxgrid.js');
-    // app.import('vendor/dhtmlx/grid/dhtmlxgrid.css');
+    app.import('vendor/dhtmlx/gantt/codebase/ext/dhtmlxgantt_marker.js');
+    app.import('vendor/dhtmlx/gantt/codebase/ext/dhtmlxgantt_tooltip.js');
+    // app.import('vendor/dhtmlx/gantt/codebase/ext/dhtmlxgantt_smart_rendering.js');
 
     app.import('vendor/bootbox/bootbox.min.js');
 

@@ -1,0 +1,27 @@
+#gantt_here {
+  width: 100%;
+  height: 500px;
+}
+
+.gantt_task_line.pending {
+  background-color: #d96c49;
+  opacity: 0.8;
+}
+
+.gantt_task_line.started {
+  background-color: #6ba8e3;
+  opacity: 0.8;
+}
+
+.gantt_task_line.completed {
+  background-color: #34c461;
+  opacity: 0.8;
+}
+
+.gantt_marker.today {
+    background-color: lightsalmon;
+}
+
+.gantt_marker.finish {
+    background-color: yellowgreen;
+}

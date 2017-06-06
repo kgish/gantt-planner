@@ -1,49 +1,32 @@
 import Ember from 'ember';
 
 import ganttAttachEvents from '../lib/gantt/attach-events';
-import ganttConfig from '../lib/gantt/config';
+import ganttSetupConfig from '../lib/gantt/setup-config';
+import ganttSetupMarkers from '../lib/gantt/setup-markers';
+import ganttSetupTemplates from '../lib/gantt/setup-templates';
 
 export default Ember.Component.extend({
     classNames: ['gantt-chart'],
     cid: null,
     tasks: null,
-    scale_units: [
-        {
-            scale_unit: 'Day',
-            date_scale: '%j %F'
-        },
-        {
-            scale_unit: 'Week',
-            date_scale: 'Week %W'
-        },
-        {
-            scale_unit: 'Quarter',
-            date_scale: '%F %Y'
-        },
-        {
-            scale_unit: 'Month',
-            date_scale: '%F %Y'
-        },
-        {
-            scale_unit: 'Year',
-            date_scale: '%Y'
-        }
-    ],
 
+    scale_units: [
+        { scale_unit: 'Day',     date_scale: '%j %F' },
+        { scale_unit: 'Week',    date_scale: 'Week %W' },
+        { scale_unit: 'Quarter', date_scale: '%F %Y' },
+        { scale_unit: 'Month',   date_scale: '%F %Y' },
+        { scale_unit: 'Year',    date_scale: '%Y' }
+    ],
     current_scale_unit: 'Day',
 
-    filter_status: [
-        'All',
-        'Pending',
-        'Started',
-        'Completed'
-    ],
-
+    filter_status: [ 'All', 'Pending', 'Started', 'Completed' ],
     current_filter_status: 'All',
 
     didInsertElement() {
         this.set('cid', $('.gantt-chart').attr('id'));
-        ganttConfig();
+        ganttAttachEvents(gantt, this);
+        ganttSetupConfig(gantt);
+        ganttSetupTemplates(gantt);
     },
 
     didRender() {
@@ -58,7 +41,7 @@ export default Ember.Component.extend({
             gantt.init('gantt_here');
             gantt.parse(tasks);
 
-            ganttAttachEvents(this);
+            ganttSetupMarkers(gantt);
         }
     },
 

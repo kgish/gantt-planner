@@ -1,6 +1,6 @@
 /*eslint no-console: ["error", { allow: ["log"] }] */
 
-export default function ganttAttachEvents (context) {
+export default function (gantt, context) {
     [
         "AfterBatchUpdate", // function(...)
         "AfterLightbox", // function(...)
