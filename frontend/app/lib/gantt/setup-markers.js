@@ -1,7 +1,7 @@
 export default function (gantt) {
     // Add today and finish markers
     let date_to_str = gantt.date.date_to_str(gantt.config.task_date),
-        today = new Date(),
+        today = new Date(2017, 5, 6),
         enddate = null;
 
     gantt.eachTask(function(task) {
