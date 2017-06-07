@@ -6,7 +6,7 @@ import ganttSetupMarkers from '../lib/gantt/setup-markers';
 import ganttSetupTemplates from '../lib/gantt/setup-templates';
 
 export default Ember.Component.extend({
-    classNames: ['gantt-chart'],
+    classNames: ['dhtmlx-gantt'],
     cid: null,
     tasks: null,
 
@@ -23,22 +23,26 @@ export default Ember.Component.extend({
     current_filter_status: 'All',
 
     didInsertElement() {
-        this.set('cid', $('.gantt-chart').attr('id'));
+        let dhtmlx_gantt = this.get('classNames')[0];
+        console.log('didInsertElement', dhtmlx_gantt);
+        this.set('cid', $('.' + dhtmlx_gantt).attr('id'));
         ganttAttachEvents(gantt, this);
         ganttSetupConfig(gantt);
         ganttSetupTemplates(gantt);
     },
 
     didRender() {
-        if ($('#gantt_here').length === 0) {
+        let dhtmlx_gantt = this.get('classNames')[0],
+            len = $('#' + dhtmlx_gantt).length;
+        if (len === 0) {
             let cid = this.get('cid'),
                 sel_gantt_chart = '#'+cid,
                 gantt_chart = $(sel_gantt_chart),
                 tasks = this.get('tasks');
 
-            gantt_chart.append('<div id="gantt_here"></div>');
+            gantt_chart.append('<div id="' + dhtmlx_gantt + '"></div>');
 
-            gantt.init('gantt_here');
+            gantt.init(dhtmlx_gantt);
             gantt.parse(tasks);
 
             ganttSetupMarkers(gantt);

@@ -17,7 +17,7 @@ export default function (gantt) {
         start_date: today,
         css: "today",
         text: "Today",
-        title:"Today: "+ date_to_str(today)
+        title:"Today: " + date_to_str(today)
     });
 
     // Finish marker
@@ -26,7 +26,7 @@ export default function (gantt) {
             start_date: enddate,
             css: "finish",
             text: "Finish",
-            title:"Finish: "+ date_to_str(enddate)
+            title:"Finish: " + date_to_str(enddate)
         });
     }
 }
