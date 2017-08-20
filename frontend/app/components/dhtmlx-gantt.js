@@ -24,7 +24,6 @@ export default Ember.Component.extend({
 
     didInsertElement() {
         let dhtmlx_gantt = this.get('classNames')[0];
-        console.log('didInsertElement', dhtmlx_gantt);
         this.set('cid', $('.' + dhtmlx_gantt).attr('id'));
         ganttAttachEvents(gantt, this);
         ganttSetupConfig(gantt);

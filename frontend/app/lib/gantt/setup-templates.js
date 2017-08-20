@@ -12,12 +12,17 @@ export default function (gantt) {
     // Tooltips
     gantt.templates.tooltip_text = function (start, end, task) {
         let tooltip = '',
-            task_type = task.type === gantt.config.types.project ? 'Project' : 'Task';
+            task_type = task.parent === "0" ? 'Project' : 'Task';
 
-        tooltip += '<b>' + task_type +'</b> : ' + task.text + '<br/>';
+        tooltip += '<b>Id</b> : ' + task.id + '<br/>';
+        tooltip += '<b>Type</b> : ' + task_type + '<br/>';
+        tooltip += '<b>Name</b> : ' + task.text + '<br/>';
         tooltip += '<b>Start date</b> : ' + gantt.templates.tooltip_date_format(start) + '<br/>';
         tooltip += '<b>End date</b> : ' + gantt.templates.tooltip_date_format(end) + '<br/>';
+        tooltip += '<b>Duration</b> : ' + task.duration + '<br/>';
         tooltip += '<b>Progress</b> : ' + parseInt(task.progress * 100) + '%<br/>';
+        tooltip += '<b>Source</b> : [' + task.$source.join(',') + ']<br/>';
+        tooltip += '<b>Target</b> : [' + task.$target.join(',') + ']<br/>';
 
         return tooltip;
     };

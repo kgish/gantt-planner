@@ -1,7 +1,7 @@
 /*
 @license
 
-dhtmlxGantt v.4.1.19 Professional
+dhtmlxGantt v.4.2.0 Professional
 This software is covered by DHTMLX Commercial License. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
@@ -41,7 +41,7 @@ gantt._formatLink = function(link){
 		}else{
 
 			if(!c.$target.length && !(gantt.getState().drag_id == c.id)){// drag_id - virtual lag shouldn't restrict task that is being moved inside project
-				return gantt.calculateDuration(gantt.roundDate(targetDates.start_date),gantt.roundDate(c.start_date));
+				return gantt.calculateDuration({start_date: targetDates.start_date, end_date: c.start_date, task:source});
 			}else{
 				return 0;
 			}
@@ -262,9 +262,9 @@ gantt._getSlack = function (task, next_task, relation) {
 
 	var duration = 0;
 	if(+from > +to){
-		duration = -this.calculateDuration(to, from);
+		duration = -this.calculateDuration({start_date: to, end_date: from, task: task});
 	}else{
-		duration = this.calculateDuration(from, to);
+		duration = this.calculateDuration({start_date: from, end_date: to, task: task});
 	}
 
 	var lag = relation.lag;
@@ -282,7 +282,7 @@ gantt._getProjectEnd = function () {
 };
 
 gantt._isProjectEnd = function (task) {
-	return !(this._hasDuration(task.end_date, this._getProjectEnd()));
+	return !(this._hasDuration({start_date:task.end_date, end_date: this._getProjectEnd(), task:task}));
 };
 
 gantt._getSummaryPredecessors = function(task){

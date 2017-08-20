@@ -1,7 +1,7 @@
 /*
 @license
 
-dhtmlxGantt v.4.1.19 Professional
+dhtmlxGantt v.4.2.0 Professional
 This software is covered by DHTMLX Commercial License. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
@@ -41,7 +41,7 @@ gantt._formatLink = function(link){
 		}else{
 
 			if(!c.$target.length && !(gantt.getState().drag_id == c.id)){// drag_id - virtual lag shouldn't restrict task that is being moved inside project
-				return gantt.calculateDuration(gantt.roundDate(targetDates.start_date),gantt.roundDate(c.start_date));
+				return gantt.calculateDuration({start_date: targetDates.start_date, end_date: c.start_date, task:source});
 			}else{
 				return 0;
 			}
@@ -442,14 +442,14 @@ gantt._autoSchedulingPath = {
 };
 
 gantt._autoSchedulingDateResolver = {
-	isFirstSmaller: function(small, big){
-		if(small.valueOf() < big.valueOf() && gantt._hasDuration(small, big))
+	isFirstSmaller: function(small, big, task){
+		if(small.valueOf() < big.valueOf() && gantt._hasDuration(small, big, task))
 			return true;
 		return false;
 	},
 
-	isSmallerOrDefault: function(smallDate, bigDate){
-		return !!(!smallDate || this.isFirstSmaller(smallDate, bigDate));
+	isSmallerOrDefault: function(smallDate, bigDate, task){
+		return !!(!smallDate || this.isFirstSmaller(smallDate, bigDate, task));
 	},
 
 	resolveRelationDate: function(taskId, relations, getEndDate){
@@ -466,11 +466,15 @@ gantt._autoSchedulingDateResolver = {
 
 			var constraintDate = this.getConstraintDate(relation, getEndDate);
 
-			if(this.isSmallerOrDefault(defaultStart, constraintDate) && this.isSmallerOrDefault(minStart, constraintDate)){
+			if(this.isSmallerOrDefault(defaultStart, constraintDate, gantt.getTask(taskId)) && this.isSmallerOrDefault(minStart, constraintDate, gantt.getTask(taskId))){
 				minStart = constraintDate;
 				linkId = relation.id;
 			}
 
+		}
+
+		if(minStart){
+			minStart = gantt.getClosestWorkTime({date:minStart, dir:"future", task:gantt.getTask(taskId)});
 		}
 
 		return {
@@ -483,7 +487,7 @@ gantt._autoSchedulingDateResolver = {
 		var new_start = getEndDate(relation.source);
 
 		if(new_start && relation.lag && relation.lag*1 == relation.lag){
-			new_start = gantt.calculateEndDate(new_start, relation.lag*1);
+			new_start = gantt.calculateEndDate({start_date: new_start, duration: relation.lag*1, task: gantt.getTask(relation.source)});
 		}
 
 		return new_start;
@@ -513,12 +517,12 @@ gantt._autoSchedulingPlanner = {
 			var task = gantt.getTask(id);
 
 			if(!(plan && (plan.start_date || plan.end_date)))
-				return gantt.getClosestWorkTime({date:task.end_date, dir:"future"});
+				return gantt.getClosestWorkTime({date:task.end_date, dir:"future", task:task});
 
 			if(plan.end_date){
 				return plan.end_date;
 			}else{
-				return gantt.calculateEndDate(plan.start_date, task.duration, gantt.config.duration_unit);
+				return gantt.calculateEndDate({start_date: plan.start_date, duration: task.duration, task: task});
 			}
 		}
 
@@ -582,7 +586,7 @@ gantt._autoSchedulingPlanner = {
 			if(!newDate) continue;
 			
 			task.start_date = newDate;
-			task.end_date = gantt.calculateEndDate(task.start_date, task.duration, gantt.config.duration_unit);
+			task.end_date = gantt.calculateEndDate(task);
 
 			updateTasks.push(task.id);
 			gantt.callEvent("onAfterTaskAutoSchedule", [task, newDate, link, predecessor]);
@@ -647,12 +651,42 @@ gantt.autoSchedule = function(id, inclusive){
 };
 
 gantt._finalizeAutoSchedulingChanges = function(updatedTasks){
+	function resetTime(task){
+		if(batchUpdate)
+			return;
 
-	gantt.batchUpdate(function(){
+		var start = task.start_date.valueOf(),
+			end = task.end_date.valueOf();
+
+		gantt.resetProjectDates(task);
+		if(task.start_date.valueOf() != start || task.end_date.valueOf() != end){
+			batchUpdate = true;
+			return;
+		}
+		var children = gantt.getChildren(task.id);
+		for(var i = 0; !batchUpdate && i < children.length; i++){
+			resetTime(gantt.getTask(children[i]));
+		}
+	}
+
+	var batchUpdate = false;
+	// call batchUpdate (full repaint) only if we update multiple tasks,
+	if(updatedTasks.length == 1){
+		gantt._eachParent(resetTime, updatedTasks[0]);
+	}else if(updatedTasks.length){
+		batchUpdate = true;
+	}
+
+	function payload(){
 		for(var i = 0; i < updatedTasks.length; i++){
 			gantt.updateTask(updatedTasks[i]);
 		}
-	});
+	}
+	if(batchUpdate){
+		gantt.batchUpdate(payload);
+	}else{
+		payload();
+	}
 
 };
 
@@ -734,16 +768,16 @@ gantt._attachAutoSchedulingHandlers = function(){
 	gantt.attachEvent("onBeforeLinkUpdate", gantt._preventCircularLink);
 	gantt.attachEvent("onBeforeLinkUpdate", gantt._preventDescendantLink);
 
-	gantt._datesNotEqual = function(dateA, dateB){
+	gantt._datesNotEqual = function(dateA, dateB, taskA, taskB){
 		if(dateA.valueOf() > dateB.valueOf()){
-			return this._hasDuration(dateB, dateA);
+			return this._hasDuration({start_date: dateB, end_date: dateA, task: taskB});
 		}else{
-			return this._hasDuration(dateA, dateB);
+			return this._hasDuration({start_date: dateA, end_date: dateB, task: taskA});
 		}
 	};
 	gantt._notEqualTaskDates = function(task1, task2){
-		if (this._datesNotEqual(task1.start_date, task2.start_date) ||
-			((this._datesNotEqual(task1.end_date, task2.end_date) ||
+		if (this._datesNotEqual(task1.start_date, task2.start_date, task1, task2) ||
+			((this._datesNotEqual(task1.end_date, task2.end_date, task1, task2) ||
 				task1.duration != task2.duration) && task1.type != gantt.config.types.milestone)) {
 			return true;
 		}
@@ -759,11 +793,46 @@ gantt._attachAutoSchedulingHandlers = function(){
 		}
 		return true;
 	});
+
+	function resetToStartLinksLags(taskId, relations){
+		var skipped = false;
+		for(var i = 0; i < relations.length; i++){
+			var originalLink = gantt.getLink(relations[i].id);
+			if(originalLink.type == gantt.config.links.start_to_start || originalLink.type == gantt.config.links.start_to_finish){
+				relations.splice(i, 1);
+				i--;
+				skipped = true;
+			}
+		}
+
+		if(skipped){
+			var presentLinks = {};
+			for(var i = 0; i < relations.length; i++){
+				presentLinks[relations[i].id] = true;
+			}
+
+			var updatedLinks = gantt._autoSchedulingPath.getLinkedTasks(taskId, true);
+			for(var i = 0; i < updatedLinks.length; i++){
+				if(!presentLinks[updatedLinks[i].id]){
+					relations.push(updatedLinks[i]);
+				}
+			}
+		}
+	}
+
 	gantt._autoScheduleAfterDND = function(taskId, task){
 		if (gantt.config.auto_scheduling && !this._autoscheduling_in_progress) {
 			var newTask = this.getTask(taskId);
 			if (gantt._notEqualTaskDates(task, newTask)){
 				if(gantt.config.auto_scheduling_move_projects && movedTask == taskId){
+
+					if(gantt.calculateDuration(task) != gantt.calculateDuration(newTask)){
+						// task duration is used as lag when converting start_to_start and start_to_finish into finish to start links
+						// recalculate these links if task duration has changed
+						resetToStartLinksLags(taskId, relations);
+					}
+
+
 					gantt._autoSchedule(taskId, relations, gantt._finalizeAutoSchedulingChanges);
 				}else{
 					gantt.autoSchedule(newTask.id);
